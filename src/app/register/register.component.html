@@ -1,0 +1,43 @@
+<div class="main-div">
+  <mat-card class="z-depth center" flex="50">
+    <mat-card-header>
+      <img width="345" height="50" style="margin-left: 18px; text-align: center;" src="https://i.ibb.co/F5bfKgK/Logo-Final-Horizontal-Tagline.png">
+    </mat-card-header>
+    <br>
+    <img style="margin-left: 120px; text-align: center;" width="200" height="50" src="https://i.ibb.co/ZTDjTVw/rsmc.jpg">
+    <p style="text-align: center;"><b>Welcome to RSMC - Egg Donation</b></p>
+    <p style="text-align: center;">To see if you qualify for our program, please register for an account. Once registered you will be prompted to login.</p>
+    <mat-card-content>
+      <form style="text-align: center;" *ngIf="showForm" [formGroup]="regForm" (ngSubmit)="register()">
+        <mat-form-field style="width:300px !important">
+          <input matInput formControlName="firstName" placeholder="First Name" required>
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width:300px !important">
+          <input matInput formControlName="lastName" placeholder="Last Name" required>
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width:300px !important">
+          <input matInput formControlName="email" placeholder="Email" required>
+          <mat-error>Invalid email address.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width:300px !important">
+          <input matInput formControlName="password" type="password" placeholder="Password" required>
+          <mat-error *ngIf="regForm.controls['password'].errors?.minlength">Minimum 8 characters needed.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width:300px !important">
+          <input matInput appConfirmp="password" formControlName="confirmp" type="password" placeholder="Confirm Password" required>
+          <mat-error *ngIf="regForm.controls['confirmp'].errors?.notEqual">Password and Confirm Password does not match.</mat-error>
+        </mat-form-field>
+        <br><br>
+        <button mat-raised-button color="primary" [disabled]="!regForm.valid" type="submit">Register</button>
+        <br>
+        <p>Already registered? <a href="#">Log In</a></p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
